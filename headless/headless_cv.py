@@ -100,6 +100,15 @@ class OpencvClass():
                    self.bt.write(text)
                    self.bt.write('$\n'.encode("utf-8"))             
                 print('preview_requested')
+            if(bt_data=="raw_preview"):
+                image_path = self.filename
+                with open(image_path, "rb") as imageFile:
+                   text = base64.b64encode(imageFile.read())
+                if(self.bt_open==True):
+                   self.bt.write('raw=data:image/png;base64,'.encode("utf-8"))
+                   self.bt.write(text)
+                   self.bt.write('$\n'.encode("utf-8"))             
+                print('raw_preview_requested')
 
     def write_bluetooth(self,bt_out):
         eol = '$\n'
